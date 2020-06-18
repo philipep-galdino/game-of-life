@@ -64,7 +64,7 @@ class Game extends React.Component {
                         newBoard[y][x] = true;
                     } else {
                         newBoard[y][x] = false;
-                    }
+                    } 
                 } else {
                     if (!this.board[y][x] && neighbors === 3) {
                         newBoard[y][x] = true;
@@ -73,20 +73,20 @@ class Game extends React.Component {
             }
         }
 
+        
         this.board = newBoard;
         this.setState({ cells: this.createCells() });
-
-        this.timeoutHandler = window.setTimeout(() => {
-            this.runIteration();
+        this.timeoutHandler = window.setTimeout(() => { 
+            this.runIteration(); 
         }, this.state.interval);
 
     }
 
     calculateNeighbors(board, x, y) {
         let neighbors = 0;
-        const dirs = [[-1, -1], [-1, 0], [-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1]];
+        const dirs = [[-1, -1], [-1, 0], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1]];
         for (let i = 0; i < dirs.length; i++) {
-            const dir = dirs[i];
+            const dir = dirs[1];
             let y1 = y + dir[0];
             let x1 = x + dir[1];
 
@@ -167,18 +167,8 @@ class Game extends React.Component {
         this.setState({ cells: this.createCells()});
     }
 
-    handleRandom = () => {
-        for (let y = 0; y < this.rows; y++) {
-            for (let x = 0; x < this.cols; x++) {
-                this.board[y][x] = (Math.random() >= 0.5);
-            }
-        }
-
-        this.setState({ cells: this.createCells() });
-    }
-
     render() {
-        const { cells, interval, isRunning } = this.state;
+        const { cells } = this.state;
         return (
             
             <div>
@@ -189,11 +179,7 @@ class Game extends React.Component {
                 </div>
 
                 <div className='controls'>
-                    Update every <input value={interval} onChange={this.handleIntervalChange} />msec {isRunning ?
-                         <button className='button' onClick={this.stopGame}>Stop</button> :
-                          <button className='button' onClick={this.startGame}>Start</button>
-                        }
-                        <button className="button" onClick={this.handleRandom}>Random</button>
+                    Update every <input value={this.state.interval} onChange={this.handleIntervalChange} />msec {this.state.isRunning ? <button className='button' onClick={this.stopGame}>Stop</button> : <button className='button' onClick={this.startGame}>Start</button>}
                 </div>
             </div>
 

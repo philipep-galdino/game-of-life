@@ -54,7 +54,7 @@ class Game extends React.Component {
         // runs the logic for the cell's reproduction according to
         // the conway's game of life rules 
 
-        let newBoard = this.createEmptyBoard();
+        let newBoard = this.makeEmptyBoard();
 
         for (let y = 0; y < this.rows; y++) {
             for (let x = 0; x < this.cols; x++) {
@@ -74,7 +74,7 @@ class Game extends React.Component {
         }
 
         this.board = newBoard;
-        this.setState({ cells: this.createCells() });
+        this.setState({ cells: this.makeCells() });
 
         this.timeoutHandler = window.setTimeout(() => {
             this.runIteration();
@@ -84,9 +84,9 @@ class Game extends React.Component {
 
     calculateNeighbors(board, x, y) {
         let neighbors = 0;
-        const dirs = [[-1, -1], [-1, 0], [-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1]];
+        const dirs = [[-1, -1], [-1, 0], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1]];
         for (let i = 0; i < dirs.length; i++) {
-            const dir = dirs[i];
+            const dir = dirs[1];
             let y1 = y + dir[0];
             let x1 = x + dir[1];
 
