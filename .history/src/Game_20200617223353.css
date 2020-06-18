@@ -1,11 +1,11 @@
 .Board {
     position: relative;
     margin: 0 auto;
-    background-color: brown;
+    background-color: #000;
     background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)
 }
 
 .Cell {
-    background: black;
+    background: red;
     position: absolute;
 }
