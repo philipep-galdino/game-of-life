@@ -5,21 +5,6 @@ const cellSize = 20;
 const width = 800;
 const height = 600;
 
-class Cell extends React.Component {
-    render() {
-        const { x, y } = this.props;
-        return(
-            <div className='Cell' 
-            style={{
-                left: `${cellSize * x + 1}px`,
-                top: `${cellSize * y + 1}px`,
-                width: `${cellSize -1}px`,
-                height: `${cellSize -1}px`,
-            }}/>
-        );
-    }
-}
-
 class Game extends React.Component {
     constructor() {
         super();
@@ -100,14 +85,17 @@ class Game extends React.Component {
     }
 
     render() {
-        const { cells } = this.state;
         return (
-            
             <div>
-                <div className='Board' style={{ width: width, height: height, backgroundSize: `${cellSize}px ${cellSize}px` }} onClick={this.handleClick} ref={(n) => { this.boardRef = n; }}>
-                {cells.map(cell => (
-                    <Cell x={cell.x} y={cell.y} key={`${cell.x}, ${cell.y}`} />
-                ))}
+                <div className='Board' 
+                style={{ 
+                    width: width, 
+                    height: height, 
+                    backgroundSize: `${cellSize}px ${cellSize}px`
+                }}
+                onClick={this.handleClick}
+                ref={(n) => { this.boardRef = n; }}>
+                
                 </div>
             </div>
         )
