@@ -55,7 +55,9 @@ class Game extends React.Component {
                     height: height, 
                     backgroundSize: `${cellSize}px ${cellSize}px` 
                     
-                }}>
+                }}
+                onClick={this.handleClick}
+                ref={(n) => { this.boardRef = n; }}>
                 </div>
             </div>
         )
